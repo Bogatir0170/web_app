@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Общежитие</title>
+    <!-- Подключаем файл стилей -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <span class="close-btn">Закрыть</span>
+            <div class="header-title">
+                <h1>Общежитие</h1>
+                <p>mini-приложение</p>
+            </div>
+            <span class="more-btn">•••</span>
+        </header>
+
+        <!-- Контейнер, куда JS вставит карточки дежурств -->
+        <main id="schedule-container" class="schedule-container"></main>
+    </div>
+
+    <!-- Модальное окно записи на дежурство -->
+<div id="modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Запись на дежурство</h3>
+        <input type="hidden" id="record-id">
+        
+        <!-- Блок ввода ФИО с контейнером для подсказок -->
+        <div class="form-group" style="position: relative;">
+            <label>ФИО УЧАЩЕГОСЯ</label>
+            <input type="text" id="student-name" placeholder="Иванов Иван Иванович" autocomplete="off" required>
+            <!-- Сюда JS будет вставлять элементы списка -->
+            <div id="suggestions-box" class="suggestions-container"></div>
+        </div>
+
+        <div class="form-group">
+            <label>НОМЕР КОМНАТЫ</label>
+            <input type="text" id="student-room" placeholder="к.416" required>
+        </div>
+
+        <div class="form-group">
+            <label>ШИФР ГРУППЫ</label>
+            <input type="text" id="student-group" placeholder="6К9092" required>
+        </div>
+        
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeModal()">Отмена</button>
+            <button class="btn-submit" onclick="submitForm()">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Чат-виджет поддержки -->
+    <div class="tg-widget">
+        <div id="tg-window" class="tg-window">
+            <div class="tg-header">
+                <div class="tg-header-info">
+                    <h4>Поддержка общежития</h4>
+                    <p>онлайн</p>
+                </div>
+                <button class="tg-close" onclick="toggleWidget()">×</button>
+            </div>
+            <div id="tg-messages" class="tg-messages"></div>
+            <div class="tg-input-area">
+                <input type="text" id="tg-input" placeholder="Написать сообщение..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendWidgetMessage()">➤</button>
+            </div>
+        </div>
+        <button class="tg-widget-btn" onclick="toggleWidget()">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 2.14.67 4.13 1.82 5.77L2.5 22l4.38-1.32C8.35 21.37 10.11 21.75 12 21.75c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Подключаем файл логики -->
+    <script src="app.js"></script>
+    <script src="app_v2.js"></script>
+</body>
+</html>
